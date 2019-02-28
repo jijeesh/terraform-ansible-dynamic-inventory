@@ -40,7 +40,7 @@ $ export PATH=$PATH:$GOPATH/bin
 Next, install terraform-inventory
 
 ```
-$ go get -u github.com/adammck/terraform-inventory
+$ go get -u github.com/jijeesh/terraform-inventory
 ```
 
 ##Generating a new SSH key
