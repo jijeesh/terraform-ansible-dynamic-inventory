@@ -1,11 +1,5 @@
 # Terraform+Ansible Example
 
-This repository is the near-simplest example of deploying an provisioning a web server on Amazon Web Services (AWS), using [Terraform](https://www.terraform.io/) and [Ansible](http://docs.ansible.com/ansible/). Based on:
-
-* [Terraform's Basic Two-Tier AWS Architecture](https://www.terraform.io/intro/examples/aws.html) example
-* [AWS's VPC with a Single Public Subnet](https://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_Scenario1.html) example
-
-## Details
 
 This repository sets up:
 
@@ -19,26 +13,46 @@ This repository sets up:
    * Python 2 (for Ansible)
    * Nginx
 
-## Setup
+   ## Setup
 
-1. Install the following locally:
-    * [Terraform](https://www.terraform.io/) >= 0.10.0
-    * [Terraform Inventory](https://github.com/adammck/terraform-inventory)
-    * Python (see [requirements](https://docs.ansible.com/ansible/latest/intro_installation.html#control-machine-requirements))
-    * [pip](https://pip.pypa.io/en/stable/installing/)
-1. Set up AWS credentials in [`~/.aws/credentials`](http://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html#cli-config-files).
-    * The easiest way to do so is by [setting up the AWS CLI](http://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-set-up.html).
-1. Ensure you have an SSH public key at `~/.ssh/id_rsa.pub`.
-    * [How to generate](https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/)
+   1. Install the following locally:
+       * [Terraform](https://www.terraform.io/) >= 0.10.0
+       * [Terraform Inventory](https://github.com/adammck/terraform-inventory)
+       * Python (see [requirements](https://docs.ansible.com/ansible/latest/intro_installation.html#control-machine-requirements))
+       * [pip](https://pip.pypa.io/en/stable/installing/)
+   1. Set up AWS credentials in [`~/.aws/credentials`](http://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html#cli-config-files).
+       * The easiest way to do so is by [setting up the AWS CLI](http://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-set-up.html).
+   1. Ensure you have an SSH public key at `~/.ssh/id_rsa.pub`.
+       * [How to generate](https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/)
+
+
+
+Install:
+
+1. [Go](https://golang.org/doc/install)
+
+Once installed, create a workspace, configure the GOPATH and add the workspace's bin folder to your system path:
+```
+$ mkdir $HOME/go
+$ export GOPATH=$HOME/go
+$ export PATH=$PATH:$GOPATH/bin
+```
+Next, install terraform-inventory
+
+```
+$ go get -u github.com/adammck/terraform-inventory
+```
+
+##Generating a new SSH key
+```
+ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
+```
 
 ## Usage
-
-```sh
-export AWS_DEFAULT_REGION=us-east-1
-pip install -r requirements.txt
-
+```
 ./deploy.sh
 ```
+
 
 [More information about the AWS environment variables](https://www.terraform.io/docs/providers/aws/#environment-variables). If it is successful, you should see an `address` printed out at the end. Visit this in your browser, and the page should say "Welcome to nginx!"
 
