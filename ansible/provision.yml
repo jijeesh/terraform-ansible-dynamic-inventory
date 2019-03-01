@@ -1,7 +1,8 @@
 ---
 - hosts: web
   name: configuration play
-  user: ubuntu
+  user: ec2-user
+  become: true
 
   # https://gist.github.com/gwillem/4ba393dceb55e5ae276a87300f6b8e6f#gistcomment-1914049
   gather_facts: false
@@ -13,9 +14,19 @@
     - setup: # aka gather_facts
 
   tasks:
+  - name: Add epel-release repo
+    yum:
+      name: epel-release
+      state: present
 
-    - name: Install nginx
-      become: true
-      apt:
-        name: nginx
-        update_cache: true
+  - name: Install nginx
+    yum:
+      name: nginx
+      state: present
+
+  
+
+  - name: Start NGiNX
+    service:
+      name: nginx
+      state: started
