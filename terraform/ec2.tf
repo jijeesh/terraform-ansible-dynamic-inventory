@@ -57,18 +57,11 @@ provisioner "file" {
 
     }
   }
-  provisioner "file" {
-      source      = "scripts/crontab"
-      destination = "~/crontab"
-      connection {
-        user = "${local.vm_user}"
-      }
-    }
   provisioner "remote-exec" {
     inline = [
-      "sudo mv ~/cleanup.sh /usr/local/src/cleanup.sh",
-      "sudo chmod +x /usr/local/src/cleanup.sh",
-      "echo '* * * * * /bin/nice -5 /usr/local/src/cleanup.sh' | sudo crontab -",
+      "sudo mv ~/cleanup.sh ${var.cleanup_script_path}",
+      "sudo chmod +x ${var.cleanup_script_path}",
+      "echo '* * * * * /bin/nice -5 ${var.cleanup_script_path}' | sudo crontab -",
       ]
       connection {
         user = "${local.vm_user}"

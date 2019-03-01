@@ -2,6 +2,9 @@ variable "public_key_path" {
   default = "~/.ssh/id_rsa.pub"
 }
 
+variable "cleanup_script_path" {
+  default = "/usr/local/src/cleanup.sh"
+}
 variable "key_name" {
   default = "terraform-ansible-key"
 }
