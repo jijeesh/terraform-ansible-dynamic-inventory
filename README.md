@@ -1,5 +1,5 @@
 # Terraform+Ansible Example
-
+## [Enterprise edition moved to private ](https://github.com/jijeesh/ee-terraform-ansible-dynamic-inventory)
 
 This repository sets up:
 
